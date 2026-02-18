@@ -1,50 +1,99 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AionDogeApp - Smart Mining</title>
-    <link rel="manifest" href="manifest.json">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>AionDogeApp - Smart Mining IA</title>
+
     <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#fbbf24">
+
     <style>
-        body { background-color: #0f172a; color: #f8fafc; font-family: sans-serif; }
-        .glow { text-shadow: 0 0 10px #fbbf24; }
+        body { background-color: #0b0f1a; }
+        .neon-border { border: 1px solid rgba(251, 191, 36, 0.3); }
+        .glass { background: rgba(15, 23, 42, 0.8); backdrop-filter: blur(10px); }
     </style>
 </head>
-<body class="p-6">
+<body class="text-slate-200 font-sans antialiased">
 
-    <header class="text-center mb-10">
-        <h1 class="text-4xl font-bold text-yellow-500 glow">🚀 AionDogeApp</h1>
-        <p class="text-gray-400 mt-2">Smart Mining Software con IA</p>
-    </header>
+    <nav class="p-4 border-b border-slate-800 flex justify-between items-center glass sticky top-0 z-50">
+        <span class="text-yellow-500 font-black tracking-tighter text-xl">AION DOGE</span>
+        <div class="flex h-2 w-2 rounded-full bg-green-500 animate-pulse"></div>
+    </nav>
 
-    <main class="grid gap-4">
-        <div class="bg-slate-800 p-4 rounded-xl border-l-4 border-yellow-500 shadow-lg">
-            <h3 class="font-bold text-lg">⚡ Alto Rendimiento</h3>
-            <p class="text-sm text-gray-300">Núcleo robusto en C++ y WebAssembly (WASM) para máxima eficiencia.</p>
+    <main class="max-w-md mx-auto p-6 space-y-8">
+        
+        <header class="text-center py-4">
+            <h1 class="text-4xl font-extrabold text-white mb-2 tracking-tight">
+                Smart Mining <span class="text-yellow-500 underline decoration-yellow-500/30">IA</span>
+            </h1>
+            <p class="text-slate-400 text-sm px-4">Optimización de alto rendimiento con C++ y WebAssembly.</p>
+        </header>
+
+        <div class="bg-slate-900 neon-border rounded-2xl p-6 shadow-2xl">
+            <div class="flex justify-between items-center mb-6">
+                <span class="text-[10px] font-mono text-yellow-500 uppercase tracking-[0.2em]">System Core Active</span>
+                <span class="text-[10px] font-mono text-slate-500">v1.0.2-beta</span>
+            </div>
+            
+            <div class="space-y-4">
+                <div>
+                    <div class="flex justify-between mb-1">
+                        <span class="text-xs font-bold">Eficiencia WASM</span>
+                        <span class="text-xs text-yellow-500">94%</span>
+                    </div>
+                    <div class="h-1.5 bg-slate-800 rounded-full overflow-hidden">
+                        <div class="bg-yellow-500 h-full w-[94%] shadow-[0_0_15px_#fbbf24]"></div>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="flex justify-between mb-1">
+                        <span class="text-xs font-bold">Carga de IA</span>
+                        <span class="text-xs text-blue-400">32%</span>
+                    </div>
+                    <div class="h-1.5 bg-slate-800 rounded-full overflow-hidden">
+                        <div class="bg-blue-500 h-full w-[32%] shadow-[0_0_15px_#3b82f6]"></div>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <div class="bg-slate-800 p-4 rounded-xl border-l-4 border-blue-500 shadow-lg">
-            <h3 class="font-bold text-lg">🧠 Optimización con IA</h3>
-            <p class="text-sm text-gray-300">Gestión inteligente de carga para evitar sobrecalentamiento.</p>
-        </div>
+        <section class="grid gap-4">
+            <div class="bg-slate-900/40 p-5 rounded-2xl border border-slate-800 hover:border-yellow-500/50 transition-all group">
+                <div class="w-8 h-8 bg-yellow-500/10 rounded-lg flex items-center justify-center mb-3 group-hover:bg-yellow-500/20">
+                    <span class="text-yellow-500 text-lg">⚡</span>
+                </div>
+                <h3 class="text-white font-bold mb-2 uppercase text-xs tracking-widest">Optimización Térmica</h3>
+                <p class="text-sm text-slate-400 leading-relaxed">Gestión inteligente de hilos para Smart TVs y dispositivos móviles.</p>
+            </div>
 
-        <div class="bg-slate-800 p-4 rounded-xl border-l-4 border-green-500 shadow-lg">
-            <h3 class="font-bold text-lg">📺 Multi-plataforma</h3>
-            <p class="text-sm text-gray-300">Optimizado para Smart TVs y dispositivos de gama baja.</p>
-        </div>
+            <div class="bg-slate-900/40 p-5 rounded-2xl border border-slate-800 hover:border-blue-500/50 transition-all group">
+                <div class="w-8 h-8 bg-blue-500/10 rounded-lg flex items-center justify-center mb-3 group-hover:bg-blue-500/20">
+                    <span class="text-blue-500 text-lg">🧠</span>
+                </div>
+                <h3 class="text-white font-bold mb-2 uppercase text-xs tracking-widest">IA Adaptativa</h3>
+                <p class="text-sm text-slate-400 leading-relaxed">Ajuste de algoritmos en tiempo real basado en la red neuronal ligera.</p>
+            </div>
+        </section>
+
+        <footer class="text-[10px] text-slate-600 text-center pt-10 pb-6 italic leading-loose">
+            <p>AionDogeApp: Este software está destinado únicamente a fines de investigación y uso personal. El uso inadecuado puede aumentar el consumo energético.</p>
+        </footer>
     </main>
 
-    <footer class="mt-10 text-xs text-gray-500 text-center border-t border-slate-700 pt-4">
-        ⚠️ Descargo de Responsabilidad: Uso para fines de investigación y personal.
-    </footer>
-
     <script>
-        // Registro del Service Worker para la App
         if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('sw.js');
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js')
+                    .then(reg => console.log('App lista para descargar', reg))
+                    .catch(err => console.log('Error de registro', err));
+            });
         }
     </script>
 </body>
 </html>
-
