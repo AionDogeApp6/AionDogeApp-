@@ -1,31 +1,96 @@
-​<!-- end list -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AionDogeApp - Panel de Control</title>
+    <title>AionDogeApp6 - P2P & Escrow</title>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
     <style>
-        body { background: #1a1a1a; color: #00ff00; font-family: sans-serif; text-align: center; }
-        .container { margin-top: 50px; border: 2px solid #333; display: inline-block; padding: 20px; border-radius: 15px; }
-        .stat { font-size: 24px; margin: 10px 0; }
-        .btn { background: #ff9900; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; }
+        :root { --gold: #ffcc00; --bg: #0a0a0a; --card: #161616; }
+        body { background: var(--bg); color: #fff; font-family: sans-serif; padding: 20px; text-align: center; }
+        .card { background: var(--card); border: 1px solid var(--gold); border-radius: 15px; padding: 20px; margin-bottom: 20px; }
+        input { width: 80%; padding: 15px; margin: 10px 0; border-radius: 8px; border: none; background: #222; color: #fff; font-size: 1.1rem; }
+        button { background: var(--gold); color: #000; border: none; padding: 15px 30px; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 1.1rem; }
+        .nav { display: flex; justify-content: center; gap: 10px; margin-bottom: 20px; }
+        .tab { padding: 10px; background: #333; cursor: pointer; border-radius: 5px; }
+        .p2p-item { border-bottom: 1px solid #333; padding: 10px; text-align: left; }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>🚀 AionDogeApp Miner</h1>
-        <p>Optimizando para Smart TV...</p>
-        <div class="stat">Hashrate: <span id="hash">0.00</span> H/s</div>
-        <div class="stat">Temp: <span id="temp">35</span>°C</div>
-        <button class="btn" onclick="startMiner()">INICIAR MINERÍA</button>
+
+    <h1 style="color: var(--gold);">AION DOGE APP v6</h1>
+    <p id="user-info">Cargando sistema...</p>
+
+    <div class="nav">
+        <div class="tab" onclick="show('reg')">Registro</div>
+        <div class="tab" onclick="show('wal')">Wallet</div>
+        <div class="tab" onclick="show('p2p')">P2P Escrow</div>
     </div>
 
-    <script>
-        function startMiner() {
-            alert("Conectando con el núcleo C++ via WebAssembly...");
-            // Aquí se conectará con tu archivo WASM en el futuro
+    <div id="reg" class="card">
+        <h3>Registro de Usuario</h3>
+        <input type="text" id="name" placeholder="Tu Nombre">
+        <input type="email" id="email" placeholder="Correo">
+        <input type="password" id="pass" placeholder="Password">
+        <button onclick="registrar()">Crear Cuenta</button>
+    </div>
+
+    <div id="wal" class="card" style="display:none">
+        <h3>Homologación de Billetera</h3>
+        <input type="text" id="wallet" placeholder="Dirección Wallet">
+        <button onclick="vincular()">Guardar Wallet</button>
+    </div>
+
+    <div id="p2p" class="card" style="display:none">
+        <h3>Mercado P2P - Seguridad Escrow</h3>
+        <div class="p2p-item">
+            <strong>DOGE x USDT</strong><br>
+            <small>Estado: Fondos Garantizados</small><br>
+            <button style="padding: 5px 10px; margin-top:5px;">Operar</button>
+        </div>
+    </div>
+
+<script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyA7j5vH-flLocY-7FE0CRPzXgXGWzUf0L4",
+      authDomain: "aiondogeapp6.firebaseapp.com",
+      projectId: "aiondogeapp6",
+      storageBucket: "aiondogeapp6.firebasestorage.app",
+      messagingSenderId: "341049207789",
+      appId: "1:341049207789:web:15fa8aafafe6fc9aded5e4"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+    const auth = firebase.auth();
+
+    function show(id) {
+        ['reg','wal','p2p'].forEach(t => document.getElementById(t).style.display = 'none');
+        document.getElementById(id).style.display = 'block';
+    }
+
+    async function registrar() {
+        const e = document.getElementById('email').value;
+        const p = document.getElementById('pass').value;
+        const n = document.getElementById('name').value;
+        try {
+            const res = await auth.createUserWithEmailAndPassword(e, p);
+            await db.collection("users").doc(res.user.uid).set({ nombre: n, wallet: "", balance: 0 });
+            alert("Usuario Registrado");
+            document.getElementById('user-info').innerText = "Hola: " + n;
+        } catch(err) { alert(err.message); }
+    }
+
+    async function vincular() {
+        const w = document.getElementById('wallet').value;
+        const user = auth.currentUser;
+        if(user) {
+            await db.collection("users").doc(user.uid).update({ wallet: w });
+            alert("Wallet Homologada");
         }
-    </script>
+    }
+</script>
 </body>
 </html>
