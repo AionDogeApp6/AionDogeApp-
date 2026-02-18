@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AionDogeApp - Smart Mining</title>
+    <link rel="manifest" href="manifest.json">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { background-color: #0f172a; color: #f8fafc; font-family: sans-serif; }
+        .glow { text-shadow: 0 0 10px #fbbf24; }
+    </style>
+</head>
+<body class="p-6">
+
+    <header class="text-center mb-10">
+        <h1 class="text-4xl font-bold text-yellow-500 glow">🚀 AionDogeApp</h1>
+        <p class="text-gray-400 mt-2">Smart Mining Software con IA</p>
+    </header>
+
+    <main class="grid gap-4">
+        <div class="bg-slate-800 p-4 rounded-xl border-l-4 border-yellow-500 shadow-lg">
+            <h3 class="font-bold text-lg">⚡ Alto Rendimiento</h3>
+            <p class="text-sm text-gray-300">Núcleo robusto en C++ y WebAssembly (WASM) para máxima eficiencia.</p>
+        </div>
+
+        <div class="bg-slate-800 p-4 rounded-xl border-l-4 border-blue-500 shadow-lg">
+            <h3 class="font-bold text-lg">🧠 Optimización con IA</h3>
+            <p class="text-sm text-gray-300">Gestión inteligente de carga para evitar sobrecalentamiento.</p>
+        </div>
+
+        <div class="bg-slate-800 p-4 rounded-xl border-l-4 border-green-500 shadow-lg">
+            <h3 class="font-bold text-lg">📺 Multi-plataforma</h3>
+            <p class="text-sm text-gray-300">Optimizado para Smart TVs y dispositivos de gama baja.</p>
+        </div>
+    </main>
+
+    <footer class="mt-10 text-xs text-gray-500 text-center border-t border-slate-700 pt-4">
+        ⚠️ Descargo de Responsabilidad: Uso para fines de investigación y personal.
+    </footer>
+
+    <script>
+        // Registro del Service Worker para la App
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('sw.js');
+        }
+    </script>
+</body>
+</html>
+
