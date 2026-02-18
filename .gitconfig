@@ -1,3 +1,5 @@
 [user]
 	email = tu-correo@ejemplo.com
-	name = TuNombreDeUsuario
+	name = AionDogeApp6
+[safe]
+	directory = /storage/emulated/0/Download
