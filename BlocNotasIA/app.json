@@ -1,0 +1,15 @@
+
+{
+  "expo": {
+    "name": "BlocNotasIA",
+    "slug": "bloc-notas-ia",
+    "version": "1.0.0",
+    "android": {
+      "permissions": [
+        "RECORD_AUDIO"
+      ],
+      "package": "com.tuusuario.blocnotasia"
+    }
+  }
+}
+

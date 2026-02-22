@@ -1,0 +1,77 @@
+const crypto = require('crypto');
+
+class Bloque {
+    constructor(index, data, previousHash = '') {
+        this.index = index;
+        this.timestamp = new Date().toISOString();
+        this.data = data;
+        this.previousHash = previousHash;
+        this.nonce = 0;
+        this.ai_audit = "WAITING_VERIFICATION";
+        this.hash = this.calcularHash();
+    }
+
+    calcularHash() {
+        return crypto
+            .createHash('sha256')
+            .update(
+                this.index + 
+                this.previousHash + 
+                this.timestamp + 
+                JSON.stringify(this.data) + 
+                this.ai_audit + 
+                this.nonce
+            )
+            .digest('hex');
+    }
+
+    minarBloque(dificultad, veredictoIA) {
+        this.ai_audit = veredictoIA;
+        // CORRECCIÓN: Punto antes de join y dificultad exacta
+        const objetivo = Array(dificultad + 1).join("0");
+
+        console.log(`\n⛏️  MINANDO BLOQUE #${this.index}...`);
+        
+        while (this.hash.substring(0, dificultad) !== objetivo) {
+            this.nonce++;
+            this.hash = this.calcularHash();
+        }
+
+        console.log(`✅ Bloque Sellado: ${this.hash}`);
+    }
+}
+
+class Blockchain {
+    constructor() {
+        this.chain = [this.crearBloqueGenesis()];
+        this.dificultad = 4; // DIFICULTAD ALTA (4 ceros)
+    }
+
+    crearBloqueGenesis() {
+        const genesis = new Bloque(0, "Bloque Génesis - Nodo Maestro", "0");
+        genesis.ai_audit = "IA_ROOT_VERIFIED";
+        return genesis;
+    }
+
+    getUltimoBloque() {
+        return this.chain[this.chain.length - 1];
+    }
+
+    agregarBloque(nuevoBloque, veredictoIA) {
+        nuevoBloque.previousHash = this.getUltimoBloque().hash;
+        nuevoBloque.minarBloque(this.dificultad, veredictoIA);
+        this.chain.push(nuevoBloque);
+    }
+
+    validarCadena() {
+        for (let i = 1; i < this.chain.length; i++) {
+            const actual = this.chain[i];
+            const anterior = this.chain[i - 1];
+            if (actual.hash !== actual.calcularHash()) return false;
+            if (actual.previousHash !== anterior.hash) return false;
+        }
+        return true;
+    }
+}
+
+module.exports = { Blockchain, Bloque };

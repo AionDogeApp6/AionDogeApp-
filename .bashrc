@@ -1,0 +1,11 @@
+alias limpiar='apt autoremove -y && apt clean && rm -rf $TMPDIR/* && history -c'
+export LANG=es_ES.UTF-8
+export LC_ALL=es_ES.UTF-8
+export ANDROID_HOME=$HOME/android-sdk
+export PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/platform-tools
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+export ANDROID_HOME=$HOME/android-sdk
+export ANDROID_NDK=$HOME/android-sdk/ndk/25.2.9519653
+export PATH=$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/platform-tools:$PATH
+export JAVA_HOME=/data/data/com.termux/files/usr/lib/jvm/java-21-openjdk
